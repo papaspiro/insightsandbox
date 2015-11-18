@@ -1,0 +1,78 @@
+Elections
+
+ get_election_by_id(id)
+ get_election_by_type_year_iter(election_type,election_year,iteratopm)
+
+ElectionCandidates
+ 	get_candidates_by_id
+ 	get_election_by_id
+
+ 	get_candidate_votes(candidate_id,election_id)
+
+
+
+ElectionCandidateConstituencyVote.query.with_entities(func.sum(ElectionCandidateConstituencyVote.votes).label(
+'valid_votes'),ElectionCandidateConstituencyVote.election_candidate_id).filter(
+ElectionCandidateConstituencyVote.election_candidate==ElectionCandidate.query.get(1)).group_by(
+ElectionCandidateConstituencyVote.election_candidate_id).first()
+
+
+presidential_candidates_2008 = ElectionCandidate.query.filter(
+ElectionCandidate.election_id.in_([Election.query.get(1).id])).all()
+
+
+presidentential candidates 2008 round2
+ ElectionCandidate.query.filter_by(election=Election.query.filter_by(election_year=ddate,iteration=it2
+ 	).first()).all()
+
+
+
+presidential_candidates_2008_id = [i.id for i in presidential_candidates_2008 ]
+
+pres2008rnd2_candidates =ElectionCandidate.query.filter_by(election=Election.query.filter_by(
+	election_year=ddate,iteration=it2).first()).all()
+
+
+candidate_national_votes_via_constituency = 
+ db.session.query(func.sum(ElectionCandidateConstituencyVote.votes),
+ 	ElectionCandidateConstituencyVote.election_candidate_id).group_by(
+ 	ElectionCandidateConstituencyVote.election_candidate_id).all()
+
+
+candidate_national_votes_by_election =
+	db.session.query(func.sum(ElectionCandidateConstituencyVote.votes
+	),ElectionCandidateConstituencyVote.election_candidate_id).order_by(
+	ElectionCandidateConstituencyVote.votes).group_by(
+	ElectionCandidateConstituencyVote.election_candidate_id).having(
+	ElectionCandidateConstituencyVote.election_candidate_id.in_(presidential_candidates_2008_id)).all()
+
+
+Regional Summary:
+db.session.query(func.sum(ElectionCandidateConstituencyVote.votes),
+	ElectionCandidateConstituencyVote.election_candidate_id).filter(
+	ElectionCandidateConstituencyVote.constituency_id.in_(gr_cons_id)).group_by(
+	ElectionCandidateConstituencyVote.election_candidate_id).having(
+	ElectionCandidateConstituencyVote.election_candidate_id.in_(presidential_candidates_2008_id)).all()
+
+db.session.query(func.sum(ElectionCandidateConstituencyVote.votes),
+     ElectionCandidateConstituencyVote.election_candidate_id).filter(
+     ElectionCandidateConstituencyVote.constituency_id.in_(gr_cons_id)).group_by(
+     ElectionCandidateConstituencyVote.election_candidate_id).having(
+     ElectionCandidateConstituencyVote.election_candidate_id.in_(presidential_candidates_2008_id)).all()
+
+
+
+
+
+qry = (db.session.query(Tweet)
+        .join(User, Tweet.favorited)
+        .filter(User.followers.any(User.id == user_id))
+        )
+
+
+  email_query = db.session.query(Emails).filter(**filters)
+email_query.paginate(page, per_page)
+
+
+Rating.query.with_entities(func.avg(Rating.field2).label('average')).filter(Rating.url == url_string.netloc)
+
