@@ -1,7 +1,7 @@
 alembic==0.8.2
 aniso8601==1.1.0
 Babel==2.0
-bleach==1.4.2
+bleach==3.3.0
 blinker==1.4
 certifi==2015.9.6.2
 coverage==3.7.1
