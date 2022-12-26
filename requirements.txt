@@ -63,7 +63,7 @@ Tempita==0.5.2
 twilio==4.7.0
 urllib3==1.12
 Werkzeug==0.10.4
-wheel==0.24.0
+wheel==0.38.1
 Whoosh==2.7.0
 WTForms==2.0.2
 xlrd==0.9.4
